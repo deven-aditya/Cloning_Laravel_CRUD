@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Exception;
 use Illuminate\Http\Request;
 use App\Models\Event;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class EventController extends Controller
 {
+    use ValidatesRequests;
+
     /**
      * index
      *
