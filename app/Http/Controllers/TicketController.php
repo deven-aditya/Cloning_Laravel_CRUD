@@ -57,5 +57,56 @@ class TicketController extends Controller
         }
     }
 
-    
+    /**
+     * edit
+     *
+     * @param int $id
+     * @return void
+     */
+    public function edit($id)
+    {
+        $ticket = Ticket::find($id);
+        return view('ticket.edit', compact('ticket'));
+    }
+
+    /**
+     * update
+     *
+     * @param mixed $request
+     * @param int $id
+     * @return void
+     */
+    public function update(Request $request, $id)
+    {
+        $ticket = Ticket::find($id);
+
+        $this->validate($request, [
+            'id_event' => 'required',
+            'ticket_type' => 'required',
+            'price' => 'required|decimal'
+        ]);
+
+        $ticket->update([
+            'id_event' => $request->id_event,
+            'ticket_type' => $request->ticket_type,
+            'price' => $request->price
+        ]);
+
+        return redirect()->route('ticket.index')->with(['success' => 'Data Berhasil Diubah!']);
+    }
+
+    /**
+     * destroy
+     *
+     * @param int $id
+     * @return void
+     */
+    public function destroy($id)
+    {
+        $ticket = Ticket::find($id);
+
+        $ticket->delete();
+
+        return redirect()->route('ticket.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
 } 
