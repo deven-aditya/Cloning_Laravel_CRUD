@@ -10,4 +10,6 @@ Route::get('/', function () {
 }); 
  
 Route::resource('/event', EventController::class); 
+Route::post('/event/create', [EventController::class, 'store'])->name('event.store');
+Route::post('/event/update/{id}', [EventController::class, 'update'])->name('event.update');
 Route::resource('/ticket', TicketController::class);

@@ -23,18 +23,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('event.create') }}" method="POST">
+                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('event.update', $event->id) }}" method="POST">
                                 <fieldset>
-                                    <legend>Form Edit Ticket</legend>
+                                    <legend>Form Edit Event</legend>
                                     <label for = "nama_event">Nama Event</label><br>
-                                    <input type = "text" id = "nama_event" name = "nama_event" placeholder = "Masukkan Nama Event"/> <br><br>
+                                    <input type = "text" id = "event_name" name = "event_name" placeholder = "Masukkan Nama Event"/> <br><br>
 
                                     <label for = "lokasi_event">Lokasi Event</label><br>
-                                    <input type = "text" id = "lokasi_event" name = "lokasi_event" placeholder = "Masukkan Lokasi Event" /><br><br>
+                                    <input type = "text" id = "location" name = "location" placeholder = "Masukkan Lokasi Event" /><br><br>
 
                                     <label for = "quota">Kuota Event</label><br>
                                     <input type = "text" id = "quota" name = "quota" placeholder = "Masukkan Kuota Event"/><br><br>
                                     @csrf
+                                    @method('PUT')
                                     <button type="submit" class="btn btn-sm btn-success">Simpan</button>
                                 </fieldset>
                             </form>
